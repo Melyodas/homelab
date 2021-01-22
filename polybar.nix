@@ -1,10 +1,26 @@
 { config, lib, pkgs, ... }:
 
 {
+  home.packages = with pkgs;
+    let feather = stdenv.mkDerivation rec {
+      name = "feather-1.0";
+      src = fetchFromGitHub {
+        owner  = "adi1090x";
+        repo   = "polybar-themes";
+        rev    = "46154c5283861a6f0a440363d82c4febead3c818";
+        sha256 = "0lp1sqxzbc0w9df5jm0h7bkcdf94ahf4929vmf14y7yhbfy2llf3";
+      };
+      installPhase = "install -m444 -Dt $out/share/fonts/ fonts/*.ttf";
+    };
+    in [
+      feather
+    ];
   services.polybar = {
     enable = true;
     package = pkgs.polybar.override { i3GapsSupport = true; };
+
     script = "polybar top & polybar bottom &";
+
     config = {
       # ┌────────────────────────────────────────────────────────────┐
       # │░█▀█░█▀█░█░░░█░█░█▀▄░█▀█░█▀▄░░░░░░░░░█▀▀░█▀█░█░░░█▀█░█▀▄░█▀▀│
