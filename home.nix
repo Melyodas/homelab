@@ -21,7 +21,7 @@
 
     # CLI utils
     killall file htop time tree
-    unzip zip bat
+    unzip zip bat ncdu
 
     # Communication
     discord
