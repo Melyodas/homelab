@@ -2,44 +2,26 @@
 
 {
   home.packages = with pkgs; [
-    # rust stuff
+    # dev tools
     rustup
 
-    # python
     python3
-    pipenv
 
-    # sysadmin
-    docker-compose
-
-    # dev tools
     (lib.hiPrio gcc)
     (lib.lowPrio clang)
-    binutils
-    clang-tools
-    cmake
-    gdb
-    gnumake
-    linuxPackages.perf
+
+    binutils clang-tools
+    cmake    gdb
+    gnumake  linuxPackages.perf
     universal-ctags
 
-    # Shell
-    starship
-    font-awesome
-    font-awesome_4
-    powerline
-    powerline-fonts
+    # Fonts
+    font-awesome font-awesome_4
+    powerline    powerline-fonts
 
     # CLI utils
-    killall
-    file
-    htop
-    manpages
-    time
-    tree
-    unzip
-    zip
-    bat
+    killall file htop time tree
+    unzip zip bat
 
     # Communication
     discord
@@ -47,8 +29,7 @@
     slack
 
     # networking
-    aria2
-    rsync
+    aria2 rsync
 
     # desktop
     evince
@@ -61,16 +42,10 @@
     vlc
 
     # image processing
-    feh
-    gimp
-    scrot
-
-    # 3d graphics
-    blender
+    gimp feh scrot
 
     # system config
     arandr
-
   ];
 
   imports = [ ./i3.nix ];
@@ -95,6 +70,8 @@
     documentation.dev.enable = true;
     xdg.portal.enable = false;
   };
+
+  manual.manpages.enable = true;
 
   programs.direnv = {
     enable = true;
