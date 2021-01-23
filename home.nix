@@ -48,7 +48,7 @@
     arandr
   ];
 
-  imports = [ ./i3.nix ];
+  imports = [ ./i3.nix ./neovim.nix ];
 
   xsession.pointerCursor = {
     package = pkgs.gnome3.gnome_themes_standard;
@@ -117,45 +117,6 @@
     userName = "Matthieu Moatti";
     ignores = [ "*.o" "*.a" "*.so" "*.pyc" "tags" ".envrc" ];
     includes = [ { path = "~/.config/nixpkgs/configs/gitconfig"; } ];
-  };
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    extraConfig = builtins.readFile ./configs/init.vim
-                  + builtins.readFile ./configs/bepo.vim;
-
-    plugins = with pkgs.vimPlugins; [
-      # Theme
-      vim-airline
-      vim-airline-themes
-
-      # Auto completion for c++
-      deoplete-nvim
-      deoplete-clang
-
-      # Automatic closing braces and brackets
-      delimitMate
-
-      # Snippets
-      vim-snippets
-      ultisnips
-
-      # Tag management
-      vim-gutentags
-
-      ###
-      # Syntax Highlighting
-      ###
-      # Rust
-      rust-vim
-      # Nix
-      vim-nix
-      # Toml
-      vim-toml
-    ];
   };
 
   # Let Home Manager install and manage itself.
