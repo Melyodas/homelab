@@ -14,6 +14,7 @@
     cmake    gdb
     gnumake  linuxPackages.perf
     universal-ctags
+    vscode
 
     # Fonts
     font-awesome font-awesome_4
@@ -48,10 +49,11 @@
     arandr
   ];
 
-  imports = [ ./i3.nix ./neovim.nix ];
+  imports = [ ./i3.nix ./neovim.nix ./kitty.nix ];
 
-  xsession.pointerCursor = {
-    package = pkgs.gnome3.gnome_themes_standard;
+  home.pointerCursor = {
+    x11.enable = true;
+    package = pkgs.vanilla-dmz;
     name = "Adwaita";
     size = 24;
   };
@@ -79,7 +81,7 @@
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     autocd = true;
     history.extended = true;
@@ -135,5 +137,5 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.03";
+  home.stateVersion = "24.05";
 }

@@ -17,7 +17,7 @@
     ];
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override { i3GapsSupport = true; };
+    #package = pkgs.polybar.override { i3GapsSupport = true; };
 
     script = "polybar top & polybar bottom &";
 

@@ -5,6 +5,8 @@
 
   home.packages = with pkgs; [
     redshift
+    rofi
+    i3-layout-manager
   ];
 
   #
@@ -25,53 +27,6 @@
     interval = null;                   # change each boot
   };
 
-  #
-  # Terminal emulator
-  #
-  programs.kitty =  {
-    enable = true;
-    font = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans Mono for Powerline";
-    };
-    settings = {
-      foreground = "#FFFFFF";
-      background = "#000000";
-      background_opacity = "0.95";
-
-      # Black + DarkGrey;
-      color0 = "#2E3436";
-      color8 = "#555753";
-
-      # DarkRed + Red;
-      color1 = "#a40000";
-      color9 = "#EF2929";
-
-      # DarkGreen + Green;
-      color2 = "#439A06";
-      color10 = "#8AE234";
-
-      # DarkYellow + Yellow;
-      color3 = "#C4A000";
-      color11 = "#FCE94F";
-
-      # DarkBlue + Blue;
-      color4 = "#3465A4";
-      color12 = "#729FCF";
-
-      # DarkMagenta + Magenta;
-      color5 = "#75507B";
-      color13 = "#AD7FA8";
-
-      # DarkCyan + Cyan;
-      color6 = "#ce5c00";
-      color14 = "#fcaf3e";
-
-      # LightGrey + White;
-      color7 = "#babdb9";
-      color15 = "#EEEEEC";
-    };
-  };
 
   #
   # Window Manager
@@ -88,7 +43,10 @@
     in {
       modifier = mod;
 
-      fonts = [ "DejaVu 10" "FontAwesome 10" ];
+      fonts = {
+        names = [ "DejaVu" "FontAwesome" ];
+        size = 10.0;
+      };
 
       gaps = {
         inner = 4;
@@ -104,6 +62,18 @@
 
       terminal = "kitty";
 
+      menu = "\${pkgs.rofi}/bin/rofi";
+
+      window = {
+        border = 0;
+        commands = [
+          {
+            command = "border pixel 1";
+            criteria.class = "kitty";
+          }
+        ];
+      };
+
       keybindings = lib.mkOptionDefault {
         ### Key bindings
         #
@@ -113,7 +83,7 @@
         "${mod}+Shift+q" = "kill";
 
         # Start your launcher
-        "${mod}+d" = "exec dmenu_run";
+        "${mod}+d" = "exec rofi -show window";
 
         # lock
         "${mod}+l" = "exec i3lock -eftin -c 000000";
@@ -157,7 +127,7 @@
         "${mod}+Shift+space" = "floating toggle";
 
         # Swap focus between the tiling area and the floating area
-        "${mod}+space" = "focus mode_toggle";
+        "${mod}+space" = "layout_manager";
 
         # Move focus to the parent container
         "${mod}+a" = "focus parent";
