@@ -83,7 +83,7 @@
         "${mod}+Shift+q" = "kill";
 
         # Start your launcher
-        "${mod}+d" = "exec rofi -show window";
+        "${mod}+d" = "exec rofi -show drun";
 
         # lock
         "${mod}+l" = "exec i3lock -eftin -c 000000";

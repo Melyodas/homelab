@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     # dev tools
+    lldb
     rustup
 
     python3
@@ -15,6 +16,9 @@
     gnumake  linuxPackages.perf
     universal-ctags
     vscode
+    jetbrains.rust-rover
+
+    ripgrep
 
     # Fonts
     font-awesome font-awesome_4
@@ -43,7 +47,7 @@
     vlc
 
     # image processing
-    gimp feh scrot
+    inkscape gimp feh scrot
 
     # system config
     arandr
@@ -103,6 +107,14 @@
     };
 
     initExtra = "unsetopt BEEP";
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      SSH_KEY_PATH = "~/.ssh/rsa_id";
+      GIT_EDITOR = "nvim";
+      QT_AUTO_SCREEN_SCALE_FACTOR = "0";
+    };
+
   };
 
   programs.starship = {
@@ -117,8 +129,9 @@
     enable = true;
     userEmail = "matthieu.moatti@epita.fr";
     userName = "Matthieu Moatti";
-    ignores = [ "*.o" "*.a" "*.so" "*.pyc" "tags" ".envrc" ];
+    ignores = [ "*.o" "*.a" "*.so" "*.pyc" "tags" ".envrc" ".vscode" ];
     includes = [ { path = "~/.config/nixpkgs/configs/gitconfig"; } ];
+    diff-so-fancy.enable = true;
   };
 
   # Let Home Manager install and manage itself.
