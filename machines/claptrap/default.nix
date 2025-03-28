@@ -4,10 +4,15 @@
 
 { config, pkgs, ... }:
 
+let
+  my = import ../..;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+
+      my.modules
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -33,15 +38,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "fr-bepo";
-  };
-
-  # file system
-  # /tmp
-  boot.cleanTmpDir = true;
-  boot.tmpOnTmpfs = true;
 
   # Display
   services.xserver.enable = true;
