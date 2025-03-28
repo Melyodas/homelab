@@ -40,30 +40,14 @@ in
   i18n.defaultLocale = "en_US.UTF-8";
 
   # Display
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ]; # NOTE: to change
-  services.xserver.windowManager.i3 = {
-    enable = true;
-    package = pkgs.i3-gaps;
-  };
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  my.graphical.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.layout = "fr";
-  services.xserver.xkbVariant = "bepo";
-  services.xserver.xkbOptions = "caps:escape";
-  services.upower.enable = true; # enable org.freedesktop.UPower
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable sound.
   # hardware.pulseaudio.enable = true;
   # Bluetooth
   hardware.bluetooth.enable = true;
-
-  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.melyodas = {
