@@ -37,6 +37,12 @@
         # > Our main home-manager configuration file <
         modules = [./common/home/home.nix];
       };
+      "melyodas@xana" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.armv7l-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        # > Our main home-manager configuration file <
+        modules = [./common/home/home.nix];
+      };
     };
   };
 }
