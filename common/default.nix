@@ -4,5 +4,6 @@
     ./filesystem.nix
     ./console.nix
     ./graphical.nix
+    ./users.nix
   ];
 }

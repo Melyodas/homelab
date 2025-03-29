@@ -49,15 +49,6 @@ in
   # Bluetooth
   hardware.bluetooth.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.melyodas = {
-    isNormalUser = true;
-    home = "/home/melyodas";
-    description = "Matthieu Moatti";
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "libvirtd" ];
-    shell = pkgs.zsh;
-  };
-
   # Add docker
   virtualisation.docker.enable = true;
 
