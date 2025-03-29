@@ -1,8 +1,6 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, home-manager, ... }:
 
-rec {
-  users.mutableUsers = false;
-
+{
   users.groups.melyodas = {
     gid = 1000;
   };
