@@ -49,15 +49,6 @@ in
   # Bluetooth
   hardware.bluetooth.enable = true;
 
-  # Add docker
-  virtualisation.docker.enable = true;
-
-  # Add libvirt
-  virtualisation.libvirtd = {
-    enable = true;
-    qemuOvmf = true; # enable UEFI boot in VM
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [

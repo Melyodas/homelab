@@ -5,5 +5,6 @@
     ./console.nix
     ./graphical.nix
     ./users.nix
+    ./virtualisation.nix
   ];
 }

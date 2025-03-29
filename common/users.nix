@@ -8,7 +8,7 @@
     isNormalUser = true;
     home = "/home/melyodas";
     description = "Matthieu Moatti";
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "libvirtd" ];
+    extraGroups = [ "wheel" "networkmanager" "video" ];
     shell = pkgs.zsh;
   };
 }
