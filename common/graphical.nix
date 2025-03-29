@@ -11,6 +11,10 @@
   };
 
   config = lib.mkIf config.my.graphical.enable {
+    environment.systemPackages = with pkgs; [
+      notify-osd
+      firefox
+    ];
     services.xserver.enable = true;
     services.xserver.windowManager.i3 = {
       enable = true;
