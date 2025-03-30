@@ -21,6 +21,15 @@
     nixosConfigurations.claptrap = nixpkgs.lib.nixosSystem {
       modules = [
         ./machines/claptrap
+        # make home-manager as a module of nixos
+        # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.melyodas = import ./common/home/home.nix;
+        }
       ];
     };
     nixosConfigurations.xana = nixpkgs.lib.nixosSystem {
@@ -28,21 +37,6 @@
         ./machines/xana
         nixos-hardware.nixosModules.raspberry-pi-4
       ];
-    };
-
-    homeConfigurations = {
-      "melyodas@claptrap" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
-        modules = [./common/home/home.nix];
-      };
-      "melyodas@xana" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.armv7l-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
-        modules = [./common/home/home.nix];
-      };
     };
   };
 }
