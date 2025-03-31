@@ -15,52 +15,18 @@
     cmake    gdb
     gnumake  linuxPackages.perf
     universal-ctags
-    vscode
-    jetbrains.rust-rover
 
     ripgrep
-
-    # Fonts
-    font-awesome font-awesome_4
-    powerline    powerline-fonts
 
     # CLI utils
     killall file htop time tree
     unzip zip bat ncdu
 
-    # Communication
-    discord
-    thunderbird-bin
-    slack
-
     # networking
     aria2 rsync
-
-    # desktop
-    evince
-    firefox
-    enpass
-
-    # audio / video
-    pavucontrol
-    spotify
-    vlc
-
-    # image processing
-    inkscape gimp feh scrot
-
-    # system config
-    arandr
   ];
 
-  imports = [ ./i3.nix ./neovim.nix ./kitty.nix ];
-
-  home.pointerCursor = {
-    x11.enable = true;
-    package = pkgs.vanilla-dmz;
-    name = "Adwaita";
-    size = 24;
-  };
+  imports = [ ./neovim.nix ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -69,12 +35,9 @@
     QT_AUTO_SCREEN_SCALE_FACTOR = "0";
   };
 
-  fonts.fontconfig.enable = true;
-
   nixpkgs.config = {
     allowUnfree = true;
     documentation.dev.enable = true;
-    xdg.portal.enable = false;
   };
 
   manual.manpages.enable = true;
@@ -133,9 +96,6 @@
     includes = [ { path = "~/.config/nixpkgs/configs/gitconfig"; } ];
     diff-so-fancy.enable = true;
   };
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

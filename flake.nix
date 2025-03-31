@@ -28,7 +28,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.melyodas = import ./common/home/home.nix;
+          home-manager.users.melyodas = import ./home/graphical.nix;
         }
       ];
     };
@@ -36,6 +36,16 @@
       modules = [
         ./machines/xana
         nixos-hardware.nixosModules.raspberry-pi-4
+
+        # make home-manager as a module of nixos
+        # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.melyodas = import ./home/common.nix;
+        }
       ];
     };
   };
