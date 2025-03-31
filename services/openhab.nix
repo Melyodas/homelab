@@ -26,6 +26,7 @@ in
       };
     };
 
+    services.geoclue2.enable = true;
     services.localtimed.enable = true;
 
     networking.firewall.allowedTCPPorts = [ 8000 8080 26213 1883 ];
@@ -68,7 +69,7 @@ in
         dependsOn = [ "zigbee2mqtt" ];
 
         volumes = [
-          "/etc/localtime:/etc/localtime:ro"
+          # "/etc/localtime:/etc/localtime:ro"
           "/etc/timezone:/etc/timezone:ro"
           "/opt/openhab/conf:/openhab/conf"
           "/opt/openhab/userdata:/openhab/userdata"
