@@ -5,6 +5,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    my.modules
   ];
 
   my.services.openhab.enable = true;
