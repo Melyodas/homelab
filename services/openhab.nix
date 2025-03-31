@@ -1,8 +1,14 @@
 { config, pkgs, lib, ... }:
 
 let
-    my = import ./.;
-in {
+  cfg = config.my.services.openhab;
+in
+{
+  options.my.services.openhab = {
+    enable = lib.mkEnableOption "Openhab server";
+  };
+
+  config = lib.mkIf cfg.enable {
     users.groups.openhab = { gid = 123; };
 
     users.users = {
@@ -80,4 +86,5 @@ in {
         };
       };
     };
+  };
 }

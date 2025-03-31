@@ -1,8 +1,14 @@
 { config, pkgs, lib, ... }:
 
 let
-    my = import ./.;
-in {
+  cfg = config.my.services.grocy;
+in
+{
+  options.my.services.grocy = {
+    enable = lib.mkEnableOption "Grocy server";
+  };
+
+  config = lib.mkIf cfg.enable {
     users.groups.grocy = {};
 
     users.users = {
@@ -43,4 +49,5 @@ in {
             };
         };
     };
+  };
 }

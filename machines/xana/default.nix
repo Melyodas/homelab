@@ -1,13 +1,13 @@
 { config, pkgs, lib, ... }:
 
 let
-  my = import ./.;
+  my = import ../..;
 in {
   imports = [
     ./hardware-configuration.nix
-    ./openhab.nix
-    ./grocy.nix
   ];
+
+  my.services.openhab.enable = true;
 
   networking.hostName = "xana";
 

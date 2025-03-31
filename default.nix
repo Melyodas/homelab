@@ -6,6 +6,7 @@ rec {
     {
       imports = [
         common
+        services
       ];
     };
 }
