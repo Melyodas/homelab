@@ -9,6 +9,7 @@ in {
   ];
 
   my.services.openhab.enable = true;
+  my.services.pihole.enable = true;
 
   networking.hostName = "xana";
 
