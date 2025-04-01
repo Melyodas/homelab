@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     # dev tools
+    vscode
     jetbrains.rust-rover
 
     # Fonts
