@@ -26,7 +26,7 @@
     aria2 rsync
   ];
 
-  imports = [ ./neovim.nix ];
+  imports = [ ./neovim ];
 
   home.sessionVariables = {
     EDITOR = "nvim";
