@@ -12,6 +12,8 @@
     viAlias = true;
     vimAlias = true;
 
+    globals.mapleader = " ";
+
     imports = [
       ./options.nix
       ./bepo.nix
