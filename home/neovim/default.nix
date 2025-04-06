@@ -14,8 +14,8 @@
 
     imports = [
       ./options.nix
-      ./plugins.nix
       ./bepo.nix
+      ./plugins
     ];
   };
 }
