@@ -5,7 +5,7 @@
     # NixOS official package source, using the nixos-24.11 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
