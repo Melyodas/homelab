@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }:
+{
+    config,
+    lib,
+    ...
+}:
 
 let
   cfg = config.my.services.pihole;
@@ -8,7 +12,11 @@ in
     enable = lib.mkEnableOption "Pi-hole server";
   };
 
+
   config = lib.mkIf cfg.enable {
+
+    age.secrets.pihole.file = ../secrets/pihole.age;
+
     virtualisation.oci-containers = {
         backend = "docker";
         containers.pihole = {
@@ -17,6 +25,7 @@ in
             volumes = [
               # For persisting Pi-hole's databases and common configuration file
               "/opt/pihole:/etc/pihole"
+              "${config.age.secrets.pihole.path}:/etc/password:ro"
             ];
             ports = [
               # DNS Ports
@@ -35,7 +44,7 @@ in
             environment = {
                 # Set a password to access the web interface. Not setting one
                 # will result in a random password being assigned
-                FTLCONF_webserver_api_password = "toto";
+                WEBPASSWORD_FILE = "/etc/password";
 
                 # If using Docker's default `bridge` network setting the dns
                 # listening mode should be set to 'all'
