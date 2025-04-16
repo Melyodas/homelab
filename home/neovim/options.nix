@@ -153,7 +153,7 @@
     # autocommand events that are ignored
     # eventignore = ;
     # use spaces when <Tab> is inserted
-    expandtab = false;
+    expandtab = true;
     # read init files in the current directory
     # exrc = ;
     # file encoding for multibyte text
