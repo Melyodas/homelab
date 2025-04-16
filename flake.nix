@@ -44,6 +44,7 @@
         # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
         home-manager.nixosModules.home-manager
         {
+          home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.useUserPackages = true;
 
           home-manager.users.melyodas = import ./home/common.nix;
