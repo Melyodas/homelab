@@ -9,6 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs = {
@@ -17,6 +18,7 @@
       nixos-hardware,
       home-manager,
       nixvim,
+      agenix,
       ...
   }@inputs : let
     inherit (self) outputs;
@@ -24,6 +26,12 @@
     nixosConfigurations.claptrap = nixpkgs.lib.nixosSystem {
       modules = [
         ./machines/claptrap
+        agenix.nixosModules.default
+        {
+            environment.systemPackages = [
+                agenix.packages.x86_64-linux.default
+            ];
+        }
         # make home-manager as a module of nixos
         # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
         home-manager.nixosModules.home-manager

@@ -35,7 +35,7 @@ in
             environment = {
                 # Set a password to access the web interface. Not setting one
                 # will result in a random password being assigned
-                FTLCONF_webserver_api_password = "toto";
+                FTLCONF_webserver_api_password = config.age.secrets.pihole.age;
 
                 # If using Docker's default `bridge` network setting the dns
                 # listening mode should be set to 'all'
