@@ -1,4 +1,4 @@
 {
-    # Status bar
-    plugins.airline.enable = true;
+  # Status bar
+  plugins.airline.enable = true;
 }

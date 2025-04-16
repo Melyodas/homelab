@@ -1,4 +1,4 @@
 {
-    # Color picker
-    plugins.ccc.enable = true;
+  # Color picker
+  plugins.ccc.enable = true;
 }

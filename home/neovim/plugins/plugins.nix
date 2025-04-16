@@ -1,11 +1,10 @@
 {
 
-    # Completion improvements
-    # colorful-menu
+  # Completion improvements
+  # colorful-menu
 
-
-    # Funstuff
-    # codesnap
-    #
-    #
+  # Funstuff
+  # codesnap
+  #
+  #
 }

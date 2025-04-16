@@ -1,3 +1,3 @@
 {
-      age.secrets.pihole.file = ../secrets/pihole.age;
+  age.secrets.pihole.file = ../secrets/pihole.age;
 }

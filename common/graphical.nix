@@ -1,4 +1,4 @@
-{ 
+{
   config,
   lib,
   pkgs,
@@ -25,9 +25,9 @@
 
     # Configure keymap in X11
     services.xserver.xkb = {
-        layout = "fr";
-        variant = "bepo";
-        options = "caps:escape";
+      layout = "fr";
+      variant = "bepo";
+      options = "caps:escape";
     };
 
     # Enable touchpad support (enabled default in most desktopManager).

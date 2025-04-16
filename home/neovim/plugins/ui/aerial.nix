@@ -1,3 +1,3 @@
 {
-    plugins.aerial.enable = true;
+  plugins.aerial.enable = true;
 }

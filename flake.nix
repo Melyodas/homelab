@@ -12,7 +12,8 @@
     agenix.url = "github:ryantm/agenix";
   };
 
-  outputs = {
+  outputs =
+    {
       self,
       nixpkgs,
       nixos-hardware,
@@ -20,50 +21,52 @@
       nixvim,
       agenix,
       ...
-  }@inputs : let
-    inherit (self) outputs;
-  in {
-    nixosConfigurations.claptrap = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./machines/claptrap
-        agenix.nixosModules.default
-        {
+    }@inputs:
+    let
+      inherit (self) outputs;
+    in
+    {
+      nixosConfigurations.claptrap = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./machines/claptrap
+          agenix.nixosModules.default
+          {
             environment.systemPackages = [
-                agenix.packages.x86_64-linux.default
+              agenix.packages.x86_64-linux.default
             ];
-        }
-        # make home-manager as a module of nixos
-        # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.useUserPackages = true;
+          }
+          # make home-manager as a module of nixos
+          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useUserPackages = true;
 
-          home-manager.users.melyodas = import ./home/graphical.nix;
-        }
-      ];
-    };
-    nixosConfigurations.xana = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./machines/xana
-        agenix.nixosModules.default
-        {
+            home-manager.users.melyodas = import ./home/graphical.nix;
+          }
+        ];
+      };
+      nixosConfigurations.xana = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./machines/xana
+          agenix.nixosModules.default
+          {
             environment.systemPackages = [
-                agenix.packages.aarch64-linux.default
+              agenix.packages.aarch64-linux.default
             ];
-        }
-        nixos-hardware.nixosModules.raspberry-pi-4
+          }
+          nixos-hardware.nixosModules.raspberry-pi-4
 
-        # make home-manager as a module of nixos
-        # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          home-manager.useUserPackages = true;
+          # make home-manager as a module of nixos
+          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.useUserPackages = true;
 
-          home-manager.users.melyodas = import ./home/common.nix;
-        }
-      ];
+            home-manager.users.melyodas = import ./home/common.nix;
+          }
+        ];
+      };
     };
-  };
 }

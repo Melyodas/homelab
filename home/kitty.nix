@@ -1,10 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   #
   # Terminal emulator
   #
-  programs.kitty =  {
+  programs.kitty = {
     enable = true;
     font = {
       package = pkgs.dejavu_fonts;

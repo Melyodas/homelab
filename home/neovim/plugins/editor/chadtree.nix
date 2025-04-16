@@ -1,4 +1,4 @@
 {
-    # File manager
-    plugins.chadtree.enable = true;
+  # File manager
+  plugins.chadtree.enable = true;
 }

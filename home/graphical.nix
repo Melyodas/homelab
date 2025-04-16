@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -7,8 +12,10 @@
     jetbrains.rust-rover
 
     # Fonts
-    font-awesome font-awesome_4
-    powerline    powerline-fonts
+    font-awesome
+    font-awesome_4
+    powerline
+    powerline-fonts
 
     # Communication
     discord
@@ -26,13 +33,20 @@
     vlc
 
     # image processing
-    inkscape gimp feh scrot
+    inkscape
+    gimp
+    feh
+    scrot
 
     # system config
     arandr
   ];
 
-  imports = [ ./common.nix ./i3.nix ./kitty.nix ];
+  imports = [
+    ./common.nix
+    ./i3.nix
+    ./kitty.nix
+  ];
 
   home.pointerCursor = {
     x11.enable = true;

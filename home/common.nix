@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -11,19 +16,30 @@
     (lib.hiPrio gcc)
     (lib.lowPrio clang)
 
-    binutils clang-tools
-    cmake    gdb
-    gnumake  linuxPackages.perf
+    binutils
+    clang-tools
+    cmake
+    gdb
+    gnumake
+    linuxPackages.perf
     universal-ctags
 
     ripgrep
 
     # CLI utils
-    killall file htop time tree
-    unzip zip bat ncdu
+    killall
+    file
+    htop
+    time
+    tree
+    unzip
+    zip
+    bat
+    ncdu
 
     # networking
-    aria2 rsync
+    aria2
+    rsync
   ];
 
   imports = [ ./neovim ];
@@ -55,7 +71,12 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "sudo" "ssh-agent" "colored-man-pages" "git" ];
+      plugins = [
+        "sudo"
+        "ssh-agent"
+        "colored-man-pages"
+        "git"
+      ];
     };
 
     shellAliases = {
@@ -92,7 +113,15 @@
     enable = true;
     userEmail = "matthieu.moatti@epita.fr";
     userName = "Matthieu Moatti";
-    ignores = [ "*.o" "*.a" "*.so" "*.pyc" "tags" ".envrc" ".vscode" ];
+    ignores = [
+      "*.o"
+      "*.a"
+      "*.so"
+      "*.pyc"
+      "tags"
+      ".envrc"
+      ".vscode"
+    ];
     includes = [ { path = "~/.config/nixpkgs/configs/gitconfig"; } ];
     diff-so-fancy.enable = true;
   };

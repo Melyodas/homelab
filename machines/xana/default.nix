@@ -1,8 +1,14 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   my = import ../..;
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     my.modules

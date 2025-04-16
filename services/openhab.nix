@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.my.services.openhab;
@@ -9,11 +14,16 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    users.groups.openhab = { gid = 123; };
+    users.groups.openhab = {
+      gid = 123;
+    };
 
     users.users = {
       melyodas = {
-          extraGroups = [ "openhab" "dialout" ];
+        extraGroups = [
+          "openhab"
+          "dialout"
+        ];
       };
 
       openhab = {
@@ -29,10 +39,15 @@ in
     services.geoclue2.enable = true;
     services.localtimed.enable = true;
 
-    networking.firewall.allowedTCPPorts = [ 8000 8080 26213 1883 ];
+    networking.firewall.allowedTCPPorts = [
+      8000
+      8080
+      26213
+      1883
+    ];
 
     virtualisation.oci-containers = {
-        backend = "docker";
+      backend = "docker";
 
       containers.mqtt = {
         autoStart = true;
@@ -81,9 +96,9 @@ in
           "-d"
         ];
         environment = {
-            USER_ID = toString config.users.users.openhab.uid;
-            GROUP_ID = toString config.users.groups.openhab.gid;
-            CRYPTO_POLICY = "unlimited";
+          USER_ID = toString config.users.users.openhab.uid;
+          GROUP_ID = toString config.users.groups.openhab.gid;
+          CRYPTO_POLICY = "unlimited";
         };
       };
     };

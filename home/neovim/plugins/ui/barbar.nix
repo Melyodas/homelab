@@ -1,4 +1,4 @@
 {
-    # Tabline
-    plugins.barbar.enable = true;
+  # Tabline
+  plugins.barbar.enable = true;
 }

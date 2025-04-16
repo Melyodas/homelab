@@ -1,3 +1,3 @@
 {
-    plugins.fzf-lua.enable = true;
+  plugins.fzf-lua.enable = true;
 }

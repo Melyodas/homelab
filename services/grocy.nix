@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.my.services.grocy;
@@ -9,11 +14,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    users.groups.grocy = {};
+    users.groups.grocy = { };
 
     users.users = {
       melyodas = {
-          extraGroups = [ "grocy" ];
+        extraGroups = [ "grocy" ];
       };
 
       grocy = {
@@ -30,24 +35,24 @@ in
     networking.firewall.allowedTCPPorts = [ 18153 ]; # ROC
 
     virtualisation.oci-containers = {
-        backend = "docker";
-        containers.grocy = {
-            autoStart = true;
-            image = "lscr.io/linuxserver/grocy:latest";
-            volumes = [
-              "/opt/grocy/config:/config"
-            ];
-            ports = [ "18153:80" ];
+      backend = "docker";
+      containers.grocy = {
+        autoStart = true;
+        image = "lscr.io/linuxserver/grocy:latest";
+        volumes = [
+          "/opt/grocy/config:/config"
+        ];
+        ports = [ "18153:80" ];
 
-            extraOptions = [
-              "-d"
-            ];
-            environment = {
-                USER_ID = toString config.users.users.grocy.uid;
-                GROUP_ID = toString config.users.groups.grocy.gid;
-                TZ = "Europe/Oslo";
-            };
+        extraOptions = [
+          "-d"
+        ];
+        environment = {
+          USER_ID = toString config.users.users.grocy.uid;
+          GROUP_ID = toString config.users.groups.grocy.gid;
+          TZ = "Europe/Oslo";
         };
+      };
     };
   };
 }

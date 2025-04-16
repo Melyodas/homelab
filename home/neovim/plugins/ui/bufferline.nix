@@ -1,4 +1,4 @@
 {
-    # Bufferline ?
-    plugins.bufferline.enable = true;
+  # Bufferline ?
+  plugins.bufferline.enable = true;
 }
