@@ -34,5 +34,7 @@
     services.libinput.enable = true;
     # Enable org.freedesktop.UPower
     services.upower.enable = true;
+
+    home-manager.users.melyodas = import ../home/graphical.nix;
   };
 }

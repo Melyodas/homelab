@@ -24,49 +24,22 @@
     }@inputs:
     let
       inherit (self) outputs;
+
+      mkNixosSystem = { module }: inputs.nixpkgs.lib.nixosSystem {
+        modules = [
+          module
+        ];
+        specialArgs.inputs = inputs;
+      };
+
     in
     {
-      nixosConfigurations.claptrap = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./machines/claptrap
-          agenix.nixosModules.default
-          {
-            environment.systemPackages = [
-              agenix.packages.x86_64-linux.default
-            ];
-          }
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.useUserPackages = true;
-
-            home-manager.users.melyodas = import ./home/graphical.nix;
-          }
-        ];
+      nixosConfigurations.claptrap = mkNixosSystem {
+        module = ./machines/claptrap;
       };
-      nixosConfigurations.xana = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./machines/xana
-          agenix.nixosModules.default
-          {
-            environment.systemPackages = [
-              agenix.packages.aarch64-linux.default
-            ];
-          }
-          nixos-hardware.nixosModules.raspberry-pi-4
 
-          # make home-manager as a module of nixos
-          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.useUserPackages = true;
-
-            home-manager.users.melyodas = import ./home/common.nix;
-          }
-        ];
+      nixosConfigurations.xana = mkNixosSystem {
+        module = ./machines/xana;
       };
     };
 }
