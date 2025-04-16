@@ -15,19 +15,24 @@
       notify-osd
       firefox
     ];
+
     services.xserver.enable = true;
+
     services.xserver.windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
     };
 
-    # Enable touchpad support (enabled default in most desktopManager).
-    services.xserver.libinput.enable = true;
-
     # Configure keymap in X11
-    services.xserver.layout = "fr";
-    services.xserver.xkbVariant = "bepo";
-    services.xserver.xkbOptions = "caps:escape";
-    services.upower.enable = true; # enable org.freedesktop.UPower
+    services.xserver.xkb = {
+        layout = "fr";
+        variant = "bepo";
+        options = "caps:escape";
+    };
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    services.libinput.enable = true;
+    # Enable org.freedesktop.UPower
+    services.upower.enable = true;
   };
 }
