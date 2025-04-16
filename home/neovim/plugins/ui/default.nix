@@ -5,5 +5,6 @@
     ./barbar.nix
     ./bufferline.nix
     ./ccc.nix
+    ./web-devicons.nix
   ];
 }
