@@ -6,6 +6,7 @@
     inlayHints = true;
 
     servers = {
+      # Nix
       nil_ls = {
         enable = true;
       };
