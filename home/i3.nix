@@ -156,8 +156,8 @@
             "exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status";
           "XF86AudioMicMute" =
             "exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status";
-          "XF86MonBrightnessDown" = "exec light -U 5";
-          "XF86MonBrightnessUp" = "exec light -A 5";
+          "XF86MonBrightnessDown" = "exec xbacklight -dec 5";
+          "XF86MonBrightnessUp" = "exec xbacklight -inc 5";
           "XF86Display" = "exec nope";
           "XF86WLAN" = "exec nope";
           "XF86Tools" = "exec nope";

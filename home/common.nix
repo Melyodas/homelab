@@ -21,7 +21,7 @@
     cmake
     gdb
     gnumake
-    linuxPackages.perf
+    perf
     universal-ctags
 
     ripgrep
@@ -90,7 +90,7 @@
       cdtmp = "cd `mktemp -d`";
     };
 
-    initExtra = "unsetopt BEEP";
+    initContent = "unsetopt BEEP";
 
     sessionVariables = {
       EDITOR = "nvim";
@@ -111,8 +111,12 @@
 
   programs.git = {
     enable = true;
-    userEmail = "matthieu.moatti@epita.fr";
-    userName = "Matthieu Moatti";
+    settings = {
+      user = {
+        email = "matthieu.moatti@gmail.com";
+        name = "Matthieu Moatti";
+      };
+    };
     ignores = [
       "*.o"
       "*.a"
@@ -123,7 +127,10 @@
       ".vscode"
     ];
     includes = [ { path = "~/.config/nixpkgs/configs/gitconfig"; } ];
-    diff-so-fancy.enable = true;
+  };
+  programs.diff-so-fancy = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   # Home Manager needs a bit of information about you and the
